@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Access - SADPS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="firebase-init.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-blue-900 text-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:justify-between md:items-center">
+      <h1 class="text-2xl font-bold text-center md:text-left mb-2 md:mb-0">San Andreas Department of Public Safety</h1>
+      <nav class="flex justify-center md:justify-end space-x-4">
+        <a href="index.html" class="hover:text-gray-300">Home</a>
+        <button id="logoutBtn" class="hidden bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto mt-20 p-6 bg-white shadow rounded-xl">
+    <div class="flex justify-center mb-4 space-x-4">
+      <button id="showRegister" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+      <button id="showLogin" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">Login</button>
+    </div>
+
+    <!-- Registration Form -->
+    <form id="registerForm" class="space-y-4">
+      <h2 class="text-xl font-bold text-blue-800 text-center">Register an Account</h2>
+      <input type="email" id="registerEmail" placeholder="Email" required class="w-full p-2 border rounded" />
+      <input type="password" id="registerPassword" placeholder="Password" required class="w-full p-2 border rounded" />
+      <button type="submit" class="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-600">Register</button>
+      <p id="registerSuccess" class="text-green-600 text-center hidden">Account created! You can now log in.</p>
+      <p id="registerError" class="text-red-600 text-center hidden"></p>
+    </form>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-4 hidden">
+      <h2 class="text-xl font-bold text-blue-800 text-center">Login to SADPS</h2>
+      <input type="email" id="loginEmail" placeholder="Email" required class="w-full p-2 border rounded" />
+      <input type="password" id="loginPassword" placeholder="Password" required class="w-full p-2 border rounded" />
+      <button type="submit" class="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-600">Login</button>
+      <p id="loginError" class="text-red-600 text-center hidden"></p>
+    </form>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyAid8zt2T4gMSLky-w3w9AML9hu01f3RYQ",
+  authDomain: "sadps-auth.firebaseapp.com",
+  projectId: "sadps-auth",
+  appId: "1:451646682130:web:d227804489bbaea84e54cb"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const showRegister = document.getElementById("showRegister");
+    const showLogin = document.getElementById("showLogin");
+    const registerForm = document.getElementById("registerForm");
+    const loginForm = document.getElementById("loginForm");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    showRegister.addEventListener("click", () => {
+      registerForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      showRegister.classList.replace("bg-gray-300", "bg-blue-600");
+      showRegister.classList.replace("text-gray-800", "text-white");
+      showLogin.classList.replace("bg-blue-600", "bg-gray-300");
+      showLogin.classList.replace("text-white", "text-gray-800");
+    });
+
+    showLogin.addEventListener("click", () => {
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
+      showLogin.classList.replace("bg-gray-300", "bg-blue-600");
+      showLogin.classList.replace("text-gray-800", "text-white");
+      showRegister.classList.replace("bg-blue-600", "bg-gray-300");
+      showRegister.classList.replace("text-white", "text-gray-800");
+    });
+
+    registerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("registerEmail").value;
+      const password = document.getElementById("registerPassword").value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          document.getElementById("registerSuccess").classList.remove("hidden");
+          document.getElementById("registerError").classList.add("hidden");
+          registerForm.reset();
+        })
+        .catch(error => {
+          document.getElementById("registerError").textContent = error.message;
+          document.getElementById("registerError").classList.remove("hidden");
+        });
+    });
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          window.location.href = "index.html";
+        })
+        .catch(error => {
+          document.getElementById("loginError").textContent = error.message;
+          document.getElementById("loginError").classList.remove("hidden");
+        });
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.reload();
+      });
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        logoutBtn.classList.remove("hidden");
+      } else {
+        logoutBtn.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

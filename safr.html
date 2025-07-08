@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyAid8zt2T4gMSLky-w3w9AML9hu01f3RYQ",
+  authDomain: "sadps-auth.firebaseapp.com",
+  projectId: "sadps-auth",
+  appId: "1:451646682130:web:d227804489bbaea84e54cb"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => window.location.reload());
+    });
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user && logoutBtn) {
+      logoutBtn.classList.remove("hidden");
+    }
+  });
+</script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -39,12 +67,13 @@
   </div>
   <div class="absolute left-0 mt-0 hidden group-hover:block bg-white text-black shadow-lg rounded-lg py-2 z-50 min-w-[160px]">
     <a href="resources.html" class="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap">Resources</a>
-    <a href="roster.html" class="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap">Roster</a>
     <a href="training.html" class="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap">Training Accademy</a>
   </div>
 </div>
+      <button id="logoutBtn" class="hidden bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700">Logout</button>
 </div>
 </div>
+
 
 
         </nav>
