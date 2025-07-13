@@ -1,33 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyAid8zt2T4gMSLky-w3w9AML9hu01f3RYQ",
-  authDomain: "sadps-auth.firebaseapp.com",
-  projectId: "sadps-auth",
-  appId: "1:451646682130:web:d227804489bbaea84e54cb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth).then(() => window.location.reload());
-    });
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if (user && logoutBtn) {
-      logoutBtn.classList.remove("hidden");
-    }
-  });
-</script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -144,6 +116,55 @@
       <p class="text-lg mb-6 text-center">
         Phone: (520) 660-3237
       </p>
+    </main>
+
+        <main class="max-w-6xl mx-auto px-4 py-16">
+            <section class="flex justify-center w-860 h-1113">
+        <img src="https://i.imgur.com/RvT4Yh9.png" alt="Deputy Director Rob Gucci" class="rounded-x0 shadow" />
+      </section>
+
+                  <section class="flex justify-center w-860 h-1113">
+        <img src="https://i.imgur.com/5xnQkLj.png" alt="Deputy Director Rob Gucci" class="rounded-x0 shadow" />
+      </section>
+
+          <main class="max-w-5xl mx-auto px-4 py-16">
+      <h2 class="text-4xl font-bold mb-6 text-blue-800 text-center">Leadership Appointments Within State Public Safety Agencies</h2>
+      <p class="text-lg mb-6 text-center">
+        <i><b>SAN ANDREAS</b></i> - The San Andreas Department of Public Safety (SADPS) is proud to announce key leadership changes within its statewide public safety divisions.
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        Effective immediately, <b>Deputy Commissioner Jordan Thompson</b> has been appointed as the new <b>Commissioner of the San Andreas Highway Patrol (SAHP)</b> following the official resignation of Commissioner Jeffrey Wheezer. Commissioner Thompson will now assume full responsibilities for overseeing the day-to-day operations, strategic planning, and continued enforcement efforts of the Highway Patrol. His commitment to public safety, operational excellence, and community-focused policing has made him an invaluable asset to the department, and SADPS has full confidence in his ability to lead SAHP into the future.
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        In addition to this transition, the San Andreas Department of Public Safety is pleased to announce the appointment of <b>Jimmy White as Chief of the San Andreas Department of Fire Rescue (SAFR).</b> Chief White brings a wealth of experience in emergency response operations, fire safety, and leadership. His vision for a responsive, well-trained, and community-integrated fire and rescue service aligns with the mission and values of SAFR.
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        “These appointments reflect our ongoing commitment to placing strong, capable leaders at the forefront of our public safety agencies,” said Director <b>Nathan Linstead</b>, head of the San Andreas Department of Public Safety. “Both Commissioner Thompson and Chief White have demonstrated the professionalism, integrity, and forward-thinking leadership that our state needs.”
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        The San Andreas Department of Public Safety extends its appreciation to former Commissioner Wheezer for his years of service and leadership, and welcomes both Commissioner Thompson and Chief White into their new roles.
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        For media inquiries or additional information, please contact:
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        <b>Public Affairs Division</b>
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        San Andreas Department of Public Safety
+      </p>
+
+      <p class="text-lg mb-6 text-center">
+        Phone: (520) 660-3237
+      </p>
+    </main>
     </main>
 
   </body>

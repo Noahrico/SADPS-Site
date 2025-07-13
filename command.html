@@ -1,34 +1,6 @@
 <!-- command.html -->
 <!DOCTYPE html>
 <html lang="en">
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyAid8zt2T4gMSLky-w3w9AML9hu01f3RYQ",
-  authDomain: "sadps-auth.firebaseapp.com",
-  projectId: "sadps-auth",
-  appId: "1:451646682130:web:d227804489bbaea84e54cb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth).then(() => window.location.reload());
-    });
-  }
-
-  onAuthStateChanged(auth, (user) => {
-    if (user && logoutBtn) {
-      logoutBtn.classList.remove("hidden");
-    }
-  });
-</script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -263,13 +235,13 @@
       <h2 class="text-4xl font-bold mb-6 text-blue-800 text-center">Administrative Staff - San Andreas Highway Patrol</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <div class="text-center">
-          <img src="https://i.imgur.com/yCcI1mh.png" class="mx-auto rounded-full mb-2" />
-          <h4 class="font-bold">Jeffrey Wheezer</h4>
+          <img src="https://i.imgur.com/V5FWiPb.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Jordan Thompson</h4>
           <p>Commissioner</p>
         </div>
         <div class="text-center">
-          <img src="https://i.imgur.com/V5FWiPb.png" class="mx-auto rounded-full mb-2" />
-          <h4 class="font-bold">Jordan Thompson</h4>
+          <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Vacant</h4>
           <p>Deputy Commissioner</p>
         </div>
         <div class="text-center">
@@ -311,6 +283,36 @@
           <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
           <h4 class="font-bold">Vacant</h4>
           <p>Assistant Chief of Police</p>
+        </div>
+    </main>
+
+            <main class="max-w-5xl mx-auto px-4 py-16">
+      <h2 class="text-4xl font-bold mb-6 text-blue-800 text-center">Administrative Staff - San Andreas Department of Fire Rescue</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
+        <div class="text-center">
+          <img src="https://i.imgur.com/5xnQkLj.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Jimmy White</h4>
+          <p>Chief of SAFR</p>
+        </div>
+        <div class="text-center">
+          <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Vacant</h4>
+          <p>Deputy Chief of SAFR</p>
+        </div>
+        <div class="text-center">
+          <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Vacant</h4>
+          <p>Batalion Chief</p>
+        </div>
+                <div class="text-center">
+          <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Vacant</h4>
+          <p>Captain</p>
+        </div>
+                        <div class="text-center">
+          <img src="https://i.imgur.com/TOfeX9B.png" class="mx-auto rounded-full mb-2" />
+          <h4 class="font-bold">Vacant</h4>
+          <p>Lieutenant</p>
         </div>
     </main>
 
